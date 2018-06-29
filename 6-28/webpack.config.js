@@ -1,7 +1,10 @@
 var path = require('path')
+var PurifyCSS = require('purifycss-webpack')
+var glob = require('glob-all')
+
+
 //在webpack4中这个插件不能用 所以用了mini-css-extract-plugin这个插件
 //var ExtracTextWebpackPlugin = require('extract-text-webpack-plugin')
-
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 
@@ -39,13 +42,25 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             //是否压缩css
-                            minimize: true,
+                            // minimize: true,
                             modules: true,
                             //css类的名字命名方式
                             localIdentName: '[path][name]_[local]_[hash:base64:5]'
                         }
                         //file-loader会产生多个link标签 所以不常使用
                         //loader: 'file-loader'
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            indent: 'postcss',
+                            plugins: [
+                                //前缀
+                                //require('autoprefixer')(),
+                                //未来的css语法 postcss-cssnext包括了autoprefixer的功能
+                                require('postcss-cssnext')()
+                            ]
+                        }
                     },
                     {
                         loader: 'less-loader'
@@ -58,6 +73,13 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "[name].css",
             chunkFilename: "[id].css"
-        })
+        }),
+        //此插件不支持webpack4 已经一年没有更新了
+        // new PurifyCSS({
+        //     paths: glob.sync([
+        //         path.join(__dirname, './*.html'),
+        //         path.join(__dirname, './src/*.js')
+        //     ])
+        // })
     ]
 }

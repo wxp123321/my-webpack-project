@@ -11,18 +11,31 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^8.6.4",
     "css-loader": "^0.28.11",
+    "cssnano": "^3.10.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
+    "glob-all": "^3.1.0",
     "install": "^0.12.1",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "less-plugin-clean-css": "^1.5.1",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.0",
+    "postcss": "^6.0.23",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-loader": "^2.1.5",
+    "purify-css": "^1.2.5",
+    "purifycss-webpack": "^0.7.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
+    "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.12.1",
     "webpack-cli": "^3.0.8"
-  }
+  },
+  "browserslist": [
+    ">= 1%",
+    "last 2 versions"
+  ]
 }

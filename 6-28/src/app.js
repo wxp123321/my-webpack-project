@@ -1,10 +1,16 @@
 import base from './css/base.less'
 import common from './css/common.less'
 
-console.log(base)
+import {a} from './common/util'
+import {chunk} from 'lodash'
+
+console.log(a())
 
 var app = document.getElementById('app')
-app.innerHTML = '<div class="'+base.box+'"></div>'
+var div = document.createElement('div')
+
+div.className = 'box'
+app.appendChild(div)
 
 
 // base.use()
