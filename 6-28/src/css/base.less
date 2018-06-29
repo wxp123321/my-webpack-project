@@ -1,0 +1,16 @@
+@homecolor: #ff3333;
+
+
+html {
+    background: @homecolor;
+}
+
+.box {
+    /*将common.css中的bigBox类样式引用过来*/
+    /*composes的css会先加载*/
+    composes: bigBox from './common.less';
+    height: 200px;
+    width: 200px;
+    border-radius: 4px;
+    background: #333;
+}
