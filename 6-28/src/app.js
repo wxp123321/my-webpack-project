@@ -1,8 +1,7 @@
-import base from './css/base.less'
-import common from './css/common.less'
+import './css/common.less'
 
 import {a} from './common/util'
-import {chunk} from 'lodash'
+a()
 
 console.log(a())
 

@@ -42,10 +42,10 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             //是否压缩css
-                            // minimize: true,
+                            minimize: true,
                             modules: true,
                             //css类的名字命名方式
-                            localIdentName: '[path][name]_[local]_[hash:base64:5]'
+                            localIdentName: '[local]'
                         }
                         //file-loader会产生多个link标签 所以不常使用
                         //loader: 'file-loader'
@@ -57,6 +57,10 @@ module.exports = {
                             plugins: [
                                 //前缀
                                 //require('autoprefixer')(),
+                                //使所以图片合成为一张图（雪碧图）
+                                require('postcss-sprites')({
+                                    spritePath: 'dist/asset/img'
+                                }),
                                 //未来的css语法 postcss-cssnext包括了autoprefixer的功能
                                 require('postcss-cssnext')()
                             ]
@@ -66,6 +70,35 @@ module.exports = {
                         loader: 'less-loader'
                     }
                 ]
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/,
+                use: [
+                    //使用file-loader来
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            publicPath: './asset/img',
+                            useRelativePath: true
+                        }
+                    },
+                    //使用url-loader来把图片变为base64 img-loader和postcss-sprites冲突
+                    // {
+                    //     loader: 'url-loader',
+                    //     //小于30K的图片变为base64
+                    //     options: {
+                    //         limit: 30000
+                    //     }
+                    // }
+                    //使用img-loader来压缩图片 webpack4中并不是很好用
+                    // {
+                    //     loader: 'img-loader'
+                    // },
+                    //使用image-webpack-loader压缩图片
+                    // {
+                    //     loader: 'image-webpack-loader'
+                    // }
+                ]
             }
         ]
     },
@@ -73,7 +106,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "[name].css",
             chunkFilename: "[id].css"
-        }),
+        })
         //此插件不支持webpack4 已经一年没有更新了
         // new PurifyCSS({
         //     paths: glob.sync([
