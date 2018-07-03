@@ -1,4 +1,5 @@
 var path = require('path')
+var webpack = require('webpack')
 var PurifyCSS = require('purifycss-webpack')
 var glob = require('glob-all')
 
@@ -17,6 +18,12 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: './dist/',
         filename: '[name].bundle.js'
+    },
+    resolve: {
+        alias: {
+            //当用lib中的JS库时
+            jquery$: path.resolve(__dirname, 'src/lib/jquery.min.js')
+        }
     },
     module: {
         rules: [
@@ -59,7 +66,8 @@ module.exports = {
                                 //require('autoprefixer')(),
                                 //使所以图片合成为一张图（雪碧图）
                                 require('postcss-sprites')({
-                                    spritePath: 'dist/asset/img'
+                                    spritePath: 'dist/asset/img',
+                                    retina: true
                                 }),
                                 //未来的css语法 postcss-cssnext包括了autoprefixer的功能
                                 require('postcss-cssnext')()
@@ -71,6 +79,7 @@ module.exports = {
                     }
                 ]
             },
+            //处理图片
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 use: [
@@ -99,6 +108,26 @@ module.exports = {
                     //     loader: 'image-webpack-loader'
                     // }
                 ]
+            },
+            //处理字体文件
+            {
+                test: /\.(eot|woff2?|ttf|svg$)/,
+                use: [
+                    {
+                        loader: 'url-loader'
+                    }
+                ]
+            },
+            {
+                test: path.resolve(__dirname, 'src/app.js'),
+                use: [
+                    {
+                        loader: 'imports-loader',
+                        options: {
+                            $: 'jquery'
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -106,7 +135,12 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "[name].css",
             chunkFilename: "[id].css"
-        })
+        }),
+
+        //当使用npm安装的js库时
+        // new webpack.ProvidePlugin({
+        //     $: 'jquery'
+        // })
         //此插件不支持webpack4 已经一年没有更新了
         // new PurifyCSS({
         //     paths: glob.sync([

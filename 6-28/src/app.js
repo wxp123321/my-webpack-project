@@ -11,6 +11,7 @@ var div = document.createElement('div')
 div.className = 'box'
 app.appendChild(div)
 
+$('div').addClass('new')
 
 // base.use()
 // // // base.unuse()
