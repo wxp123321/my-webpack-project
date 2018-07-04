@@ -2,6 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 var PurifyCSS = require('purifycss-webpack')
 var glob = require('glob-all')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 //在webpack4中这个插件不能用 所以用了mini-css-extract-plugin这个插件
@@ -16,7 +17,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: './dist/',
+        //publicPath: './dist/',
         filename: '[name].bundle.js'
     },
     resolve: {
@@ -88,7 +89,7 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             publicPath: './asset/img',
-                            useRelativePath: true
+                            outputPath: './asset/img/'
                         }
                     },
                     //使用url-loader来把图片变为base64 img-loader和postcss-sprites冲突
@@ -128,7 +129,21 @@ module.exports = {
                         }
                     }
                 ]
-            }
+            },
+            //处理html中的图片 使用${require('./src/asset/img/5.jpg')}可以不设置此loader
+            // {
+            //     test: /\.html$/,
+            //     use: [
+            //         {
+            //             loader: 'html-loader',
+            //             options: {
+            //                 //data-src处理懒加载
+            //                 attrs: ['img:src', 'img:data-src'],
+            //                 minimize: true
+            //             }
+            //         }
+            //     ]
+            // }
         ]
     },
     plugins: [
@@ -136,7 +151,16 @@ module.exports = {
             filename: "[name].css",
             chunkFilename: "[id].css"
         }),
-
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: './index.html',
+            //是否将js css注入html(页面自己写了的话 会重复)
+            //inject: false
+            chunks: ['app'],
+            minify: {
+                collapseWhitespace: true
+            }
+        })
         //当使用npm安装的js库时
         // new webpack.ProvidePlugin({
         //     $: 'jquery'
