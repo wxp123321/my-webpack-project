@@ -22,6 +22,8 @@ module.exports = {
         //publicPath: './dist/',
         filename: 'js/[name].bundle.js'
     },
+    //  js SourceMap
+    devtool: "source-map",
     devServer: {
         port: 9005,
         // contentBase: path.join(__dirname, "dist"),
@@ -76,8 +78,9 @@ module.exports = {
                             //打包到指定的标签
                             //insertInto: '#app',
                             //打包到一个style标签
-                            singleton: true,
-                            transform: './css.transform.js'
+                            //singleton: true,
+                            transform: './css.transform.js',
+                            sourceMap: true
                         }
                     },
                     //使用MiniCssExtractPlugin.loader再使用style-loader会使import的css文件类加载不出来
@@ -89,10 +92,11 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             //是否压缩css
-                            minimize: true,
-                            modules: true,
+                            //minimize: true,
+                            //modules: true,
                             //css类的名字命名方式
-                            localIdentName: '[local]'
+                            //localIdentName: '[local]'
+                            sourceMap: true
                         }
                         //file-loader会产生多个link标签 所以不常使用
                         //loader: 'file-loader'
@@ -101,6 +105,7 @@ module.exports = {
                         loader: 'postcss-loader',
                         options: {
                             indent: 'postcss',
+                            sourceMap: true,
                             plugins: [
                                 //前缀
                                 //require('autoprefixer')(),
@@ -115,7 +120,10 @@ module.exports = {
                         }
                     },
                     {
-                        loader: 'less-loader'
+                        loader: 'less-loader',
+                        options: {
+                            sourceMap: true
+                        }
                     }
                 ]
             },

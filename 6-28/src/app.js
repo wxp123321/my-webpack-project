@@ -11,7 +11,7 @@ var div = document.createElement('div')
 div.className = 'box'
 app.appendChild(div)
 
-$('div').addClass('new2')
+$('div').addClass('new3')
 
 $.get('/api/comments/show',{
     id: '4193586758833502',
