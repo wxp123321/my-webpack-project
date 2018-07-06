@@ -3,6 +3,7 @@ var webpack = require('webpack')
 var PurifyCSS = require('purifycss-webpack')
 var glob = require('glob-all')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var CleanWebpackPlugin = require('clean-webpack-plugin')
 
 
 //在webpack4中这个插件不能用 所以用了mini-css-extract-plugin这个插件
@@ -13,12 +14,38 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
     entry: {
-        app: './src/app.js'
+        app: './src/app.js',
+        login: './src/login.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         //publicPath: './dist/',
-        filename: '[name].bundle.js'
+        filename: 'js/[name].bundle.js'
+    },
+    devServer: {
+        port: 9005,
+        // contentBase: path.join(__dirname, "dist"),
+        // //gzip压缩contentBase的目录（在这也就是dist目录）
+        // compress: true,
+        proxy: {
+            '/api': {
+                target: 'https://m.weibo.cn',
+                changeOrigin: true
+            }
+        },
+        hot: true,
+        hotOnly: true,
+        historyApiFallback: {
+            rewrites: [
+                {
+                    from: /^\/([a-zA-Z0-9]+\/?)([a-zA-Z0-9]+)/,
+                    //  http://localhost:9001/pages/a将会转到http://localhost:9001/pages/a.html
+                    to: function(context){
+                        return '/'+context.match[1]+context.match[2]+'.html'
+                    }
+                }
+            ]
+        }
     },
     resolve: {
         alias: {
@@ -29,23 +56,35 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['env']
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.less$/,
                 use: [
-                    // {
-                    //     //url useable
-                    //     loader: 'style-loader',
-                    //     options: {
-                    //         //打包到指定的标签
-                    //         //insertInto: '#app',
-                    //         //打包到一个style标签
-                    //         singleton: true,
-                    //         transform: './css.transform.js'
-                    //     }
-                    // },
-                    //使用MiniCssExtractPlugin.loader再使用style-loader会使import的css文件类加载不出来
                     {
-                        loader: MiniCssExtractPlugin.loader
+                        //url useable
+                        loader: 'style-loader',
+                        options: {
+                            //打包到指定的标签
+                            //insertInto: '#app',
+                            //打包到一个style标签
+                            singleton: true,
+                            transform: './css.transform.js'
+                        }
                     },
+                    //使用MiniCssExtractPlugin.loader再使用style-loader会使import的css文件类加载不出来
+                    //不使用style-loader不会热更新，所以开发模式下不使用它
+                    // {
+                    //     loader: MiniCssExtractPlugin.loader
+                    // },
                     {
                         loader: 'css-loader',
                         options: {
@@ -160,7 +199,21 @@ module.exports = {
             minify: {
                 collapseWhitespace: true
             }
-        })
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'login.html',
+            template: './login.html',
+            //是否将js css注入html(页面自己写了的话 会重复)
+            //inject: false
+            chunks: ['login'],
+            minify: {
+                collapseWhitespace: true
+            }
+        }),
+        //每次打包清除的目录
+        new CleanWebpackPlugin(['dist']),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin()
         //当使用npm安装的js库时
         // new webpack.ProvidePlugin({
         //     $: 'jquery'

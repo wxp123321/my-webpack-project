@@ -5,19 +5,25 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --mode development",
-    "build": "webpack --mode production"
+    "start": "webpack --mode development -w --progress --display-resons --color",
+    "build": "webpack --mode production",
+    "server": "webpack-dev-server --open"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^8.6.4",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "cssnano": "^3.10.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
     "glob-all": "^3.1.0",
     "html-loader": "^0.5.5",
+    "html-webpack-inline-plugin": "^0.0.3",
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^4.3.1",
     "img-loader": "^3.0.0",
@@ -39,7 +45,8 @@
     "uglifyjs-webpack-plugin": "^1.2.7",
     "url-loader": "^1.0.1",
     "webpack": "^4.12.1",
-    "webpack-cli": "^3.0.8"
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
   },
   "browserslist": [
     "> 1%",
