@@ -26,6 +26,7 @@ module.exports = {
     devtool: "source-map",
     devServer: {
         port: 9005,
+        overlay: true,
         // contentBase: path.join(__dirname, "dist"),
         // //gzip压缩contentBase的目录（在这也就是dist目录）
         // compress: true,
@@ -59,11 +60,21 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
+                exclude: [
+                  path.resolve(__dirname, 'node_modules'),
+                  path.resolve(__dirname, 'src/lib')
+                ],
                 use: [
                     {
                         loader: 'babel-loader',
                         options: {
                             presets: ['env']
+                        }
+                    },
+                    {
+                        loader: 'eslint-loader',
+                        options: {
+                            formatter: require('eslint-friendly-formatter')
                         }
                     }
                 ]
