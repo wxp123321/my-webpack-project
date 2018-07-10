@@ -206,6 +206,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 
 /***/ }),
 
+/***/ "./src/css/b.css":
+/*!***********************!*\
+  !*** ./src/css/b.css ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/css/b.css?");
+
+/***/ }),
+
 /***/ "./src/pages/b.js":
 /*!************************!*\
   !*** ./src/pages/b.js ***!
@@ -214,7 +225,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/_react@16.4.1@react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _components_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/module */ \"./src/components/module.js\");\n\r\n\r\n\r\nconsole.log('i am b')\r\nconsole.log(_components_module__WEBPACK_IMPORTED_MODULE_1__[\"default\"])\n\n//# sourceURL=webpack:///./src/pages/b.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/_react@16.4.1@react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _components_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/module */ \"./src/components/module.js\");\n/* harmony import */ var _css_b_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/b.css */ \"./src/css/b.css\");\n/* harmony import */ var _css_b_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_css_b_css__WEBPACK_IMPORTED_MODULE_2__);\n\r\n\r\n\r\n\r\nconsole.log('i am b')\r\nconsole.log(_components_module__WEBPACK_IMPORTED_MODULE_1__[\"default\"])\n\n//# sourceURL=webpack:///./src/pages/b.js?");
 
 /***/ })
 

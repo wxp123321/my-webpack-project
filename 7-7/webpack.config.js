@@ -20,6 +20,18 @@ const baseConfig = {
             {
                 test: /\.css$/,
                 use: [
+                    // {
+                    //     //url useable
+                    //     loader: 'style-loader',
+                    //     options: {
+                    //         //打包到指定的标签
+                    //         //insertInto: '#app',
+                    //         //打包到一个style标签
+                    //         singleton: true,
+                    //         //transform: './css.transform.js',
+                    //         //sourceMap: true
+                    //     }
+                    // },
                     {
                         loader: MiniCssExtractPlugin.loader
                     },
@@ -38,7 +50,7 @@ const baseConfig = {
         new CleanWebpack(path.resolve(__dirname, 'dist')),
 
         new MiniCssExtractPlugin({
-            filename: "[name].css",
+            filename: "css/[name].css",
             chunkFilename: "[id].css"
         })
     ]
@@ -57,6 +69,7 @@ const generatePage = function ({
             new HtmlWebpackPlugin({
                 chunks,
                 template,
+                title,
                 filename: name + '.html'
             })
         ]

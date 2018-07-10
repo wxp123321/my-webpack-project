@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/pages/c.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/pages/a.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -206,15 +206,26 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 
 /***/ }),
 
-/***/ "./src/pages/c.js":
+/***/ "./src/css/a.css":
+/*!***********************!*\
+  !*** ./src/css/a.css ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/css/a.css?");
+
+/***/ }),
+
+/***/ "./src/pages/a.js":
 /*!************************!*\
-  !*** ./src/pages/c.js ***!
+  !*** ./src/pages/a.js ***!
   \************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/_react@16.4.1@react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _components_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/module */ \"./src/components/module.js\");\n\r\n\r\n\r\nconsole.log('i am c')\r\nconsole.log(_components_module__WEBPACK_IMPORTED_MODULE_1__[\"default\"])\n\n//# sourceURL=webpack:///./src/pages/c.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/_react@16.4.1@react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _components_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/module */ \"./src/components/module.js\");\n/* harmony import */ var _css_a_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/a.css */ \"./src/css/a.css\");\n/* harmony import */ var _css_a_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_css_a_css__WEBPACK_IMPORTED_MODULE_2__);\n\r\n\r\n\r\n\r\nconsole.log('i am a')\r\nconsole.log(_components_module__WEBPACK_IMPORTED_MODULE_1__[\"default\"])\n\n//# sourceURL=webpack:///./src/pages/a.js?");
 
 /***/ })
 
